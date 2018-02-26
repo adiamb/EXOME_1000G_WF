@@ -12,7 +12,7 @@ echo " WGET PAIRED FASTQ FILES FROM SERVER "
 #$3 - FASTQ MATE1
 #$4 - FASTQ MATE2
 ./WGET_FASTA.sh $1 $3 $4
-JOBID0=$(sbatch --export=ALL PLINK_SPLIT.sh)
+JOBID0=$(sbatch --export="$1"_WGET_TASK.sh)
 if ! echo ${JOBID0} | grep -q "[1-9][0-9]*$"; then 
    echo "Job(s) submission failed."
    echo ${JOBID0}
