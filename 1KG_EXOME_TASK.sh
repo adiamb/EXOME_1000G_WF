@@ -3,6 +3,7 @@
 #$2 - RG
 #$3 -mate1
 #$4 - mate2
+#$5 - jobid of wget
 touch "$1"_EXOME_TASK.sh
 chmod 777 "$1"_EXOME_TASK.sh
 cat > "$1"_EXOME_TASK.sh <<- EOF
@@ -13,6 +14,7 @@ cat > "$1"_EXOME_TASK.sh <<- EOF
 #SBATCH --account=mignot
 #SBATCH --nodes=1 
 #SBATCH --ntasks=32
+#SBATCH --depend=afterok:"$5"
 module load bwa/0.7.8
 module load java/8u66
 gatk="GenomeAnalysisTK.jar"
