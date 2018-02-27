@@ -9,11 +9,12 @@ chmod 777 "$1"_EXOME_TASK.sh
 cat > "$1"_EXOME_TASK.sh <<- EOF
 #!/bin/bash -l
 #SBATCH --job-name=$1_EXOME_TASK
-#SBATCH --mem-per-cpu=16000
+#SBATCH --mem-per-cpu=10000
 #SBATCH --time=120:00:00
 #SBATCH --account=mignot
 #SBATCH --nodes=1 
 #SBATCH --ntasks=32
+#SBATCH --partition=nih_s10
 #SBATCH --depend=afterok:$5
 module load bwa/0.7.8
 module load java/8u66
