@@ -34,5 +34,7 @@ echo ">>>>>>>>>>>>>>>>>>>>>>>>>     GATK PRINTING READS POST BQSR    <<<<<<<<<<<
 java -Djava.io.tmpdir=/local/scratch -jar \$gatk -T PrintReads -R \$reffasta -I $1_SORTED_REORD_DEDUP.bam -BQSR $1_RECAL.table -nct 32 -o $1_RECAL_READS.bam
 echo ">>>>>>>>>>>>>>>>>>>>>>>>>     GATK HALPOTYPE CALLER -G.VCFs    <<<<<<<<<<<<<<<<<<<<<<<<<<"
 java -Djava.io.tmpdir=/local/scratch -jar \$gatk -T HaplotypeCaller -R \$reffasta -L Exome_Agilent_V4.bed -I $1_RECAL_READS.bam --dbsnp dbsnp_138.hg19.vcf --emitRefConfidence GVCF -nct 32 -o $1.raw.snps.indels.g.vcf
+echo "removing alignment files"
+rm $1_bwamem.sam $1_SORTED_REORD.bam $1_SORTED_REORD_DEDUP.bam
 EOF
 sbatch "$1"_EXOME_TASK.sh
