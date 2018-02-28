@@ -3,7 +3,8 @@
 #SBATCH --mem-per-cpu=10000
 #SBATCH --time=120:00:00
 #SBATCH --account=mignot
-#SBATCH --nodes=1 
+#SBATCH --nodes=1
+#SBATCH --depend=afterok:51058
 module load java/8u66
 module load R/3.4.1
 gatk="GenomeAnalysisTK.jar"
