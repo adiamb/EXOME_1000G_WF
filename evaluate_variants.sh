@@ -11,6 +11,7 @@ gatk="GenomeAnalysisTK.jar"
 java -jar $gatk \
 -T VariantEval \
 -R ucsc.hg19.fasta \
+-L Exome_Agilent_V4.bed \
 -eval RECALIBRATED_VARIANTS_SNPS_INDELS_FEB28_2018.vcf \
 -D dbsnp_138.hg19.vcf \
 -noEV -EV CompOverlap -EV IndelSummary -EV TiTvVariantEvaluator -EV CountVariants -EV MultiallelicSummary \
