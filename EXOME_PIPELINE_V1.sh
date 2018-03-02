@@ -21,4 +21,4 @@ else
    job0=$(echo ${JOBID0} | grep -oh "[1-9][0-9]*$")
 fi
 echo "HOLDING EXOME PIPELINE UNTIL WGET COMPLETES"
-./1KG_EXOME_TASK.sh $1 $2 $3 $4 $job0
+./1KG_EXOME_TASK_SCRATCH.sh $1 $2 $3 $4 $job0
