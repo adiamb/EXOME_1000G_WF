@@ -14,6 +14,7 @@ cat > "$1"_EXOME_TASK.sh <<- EOF
 #SBATCH --account=mignot
 #SBATCH --nodes=1 
 #SBATCH --ntasks=32
+#SBATCH --depend=afterok:$5
 module load bwa/0.7.8
 module load java/8u66
 gatk="GenomeAnalysisTK.jar"
