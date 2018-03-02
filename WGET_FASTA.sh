@@ -11,7 +11,8 @@ cat > "$1"_WGET_TASK.sh <<- EOF
 #SBATCH --time=120:00:00
 #SBATCH --account=mignot
 #SBATCH --nodes=1 
-wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/$1/sequence_read/$2
-wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/$1/sequence_read/$3
+path_fasta="/ifs/scratch/ambati/"
+wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/$1/sequence_read/$2 -O \$path_fasta
+wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/$1/sequence_read/$3 -O \$path_fasta
 EOF
 #sbatch "$1"_WGET_TASK.sh
