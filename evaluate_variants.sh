@@ -1,3 +1,7 @@
+#!/bin/bash
+touch evaluate_variants_slurm.sh
+chmod 755 evaluate_variants_slurm.sh
+cat > evaluate_variants_slurm.sh <<-EOF
 #!/bin/bash -l
 #SBATCH --job-name=GGTYPE_EXOME_TASK
 #SBATCH --mem-per-cpu=10000
@@ -8,12 +12,14 @@
 module load java/8u66
 module load R/3.4.1
 gatk="GenomeAnalysisTK.jar"
-java -jar $gatk \
+java -jar \$gatk \
 -T VariantEval \
 -R ucsc.hg19.fasta \
 -L Exome_Agilent_V4.bed \
--eval RECALIBRATED_VARIANTS_SNPS_INDELS_FEB28_2018.vcf \
+-eval $1 \
 -D dbsnp_138.hg19.vcf \
 -noEV -EV CompOverlap -EV IndelSummary -EV TiTvVariantEvaluator -EV CountVariants -EV MultiallelicSummary \
 -nt 16 \
--o RECALIBRATED_VARIANTS_SNPS_INDELS_FEB28_2018.eval.grp
+-o $1.eval.grp
+EOF
+sbatch evaluate_variants_slurm.sh
