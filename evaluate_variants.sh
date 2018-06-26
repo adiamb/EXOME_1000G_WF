@@ -16,7 +16,7 @@ java -jar \$gatk \
 -T VariantEval \
 -R ucsc.hg19.fasta \
 -L Exome_Agilent_V4.bed \
--eval $1 \
+-eval $1.vcf \
 -D dbsnp_138.hg19.vcf \
 -noEV -EV CompOverlap -EV IndelSummary -EV TiTvVariantEvaluator -EV CountVariants -EV MultiallelicSummary \
 -nt 16 \
