@@ -11,7 +11,7 @@ cat > VQSR_1_STEP.sh <<-EOF
 module load java/8u66
 module load R/3.4.1
 gatk="GenomeAnalysisTK.jar"
-java -Djava.io.tmpdir=/local/scratch -jar $gatk -T VariantRecalibrator -R ucsc.hg19.fasta \
+java -Djava.io.tmpdir=/local/scratch -jar \$gatk -T VariantRecalibrator -R ucsc.hg19.fasta \
 -input $1.vcf \
 -resource:hapmap,known=false,training=true,truth=true,prior=15.0 hapmap_3.3.hg19.sites.vcf \
 -resource:omni,known=false,training=true,truth=true,prior=12.0 1000G_omni2.5.hg19.sites.vcf \
