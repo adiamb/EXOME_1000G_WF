@@ -1,6 +1,6 @@
 #!/bin/bash
 ./VQSR_1_SLURM.sh $1
-JOBID0=$(sbatch --export=VQSR_1_STEP.sh)
+JOBID0=$(sbatch VQSR_1_STEP.sh)
 if ! echo ${JOBID0} | grep -q "[1-9][0-9]*$"; then 
    echo "Job(s) submission failed."
    echo ${JOBID0}
@@ -13,7 +13,7 @@ echo " SNP RECALIBRATION COMPELTED NOW APPLYING RECALIBRATION MAKE SURE TO CHECK
 
 
 ./VQSR_2_SLURM.sh $job0 $1
-JOBID1=$(sbatch --export=VQSR_2_STEP.sh)
+JOBID1=$(sbatch VQSR_2_STEP.sh)
 if ! echo ${JOBID1} | grep -q "[1-9][0-9]*$"; then 
    echo "Job(s) submission failed."
    echo ${JOBID1}
@@ -25,7 +25,7 @@ echo "VQSR of SNPS in progress "
 
 
 ./VQSR_3_SLURM.sh $job1 $1
-JOBID2=$(sbatch --export=VQSR_3_STEP.sh)
+JOBID2=$(sbatch VQSR_3_STEP.sh)
 if ! echo ${JOBID2} | grep -q "[1-9][0-9]*$"; then 
    echo "Job(s) submission failed."
    echo ${JOBID2}
@@ -37,3 +37,4 @@ echo "VQSR of INDELS in progress "
 
 echo "VQSR of INDELS finshed "
 ./VQSR_4_SLURM.sh $job2 $1
+sbatch VQSR_4_STEP.sh
