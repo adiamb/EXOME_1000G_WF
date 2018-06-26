@@ -12,7 +12,7 @@ cat > VQSR_4_STEP.sh <<-EOF
 module load java/8u66
 module load R/3.4.1
 gatk="GenomeAnalysisTK.jar"
-java -Djava.io.tmpdir=/local/scratch -jar $gatk -T ApplyRecalibration \
+java -Djava.io.tmpdir=/local/scratch -jar \$gatk -T ApplyRecalibration \
 -R ucsc.hg19.fasta -input recalibrated_$2.vcf -mode INDEL --ts_filter_level 99.0 -recalFile recalibrate_INDEL_$2.recal -tranchesFile recalibrate_INDEL_$2.tranches \
 -o RECALIBRATED_SNPS_INDELS_$2.vcf
 EOF
